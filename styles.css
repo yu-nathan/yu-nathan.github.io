@@ -104,6 +104,16 @@ body {
   padding: 0 10vw;
 }
 
+@media (min-width: 32rem) {
+  .about-section__desc {
+    font-size: 2rem;
+  }
+  
+  .smaller-text {
+    font-size: 1.2rem;
+  }
+}
+
 .smaller-text {
   font-size: 1.7rem;
   color: var(--color-white);

@@ -1,0 +1,256 @@
+/* CSS style sheet for Product Landing Page project */
+@font-face {
+  font-family: 'league_spartan';
+  src: url('.resources/fonts/leaguespartan-bold-webfont.woff2') format('woff2'),
+       url('.resources/fonts/leaguespartan-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-white: #f2f6f5;
+  --color-white-hover: #c3d5d1;
+  --color-pink: #eeaba2;
+  --color-blue: #b0ddf5;
+  --color-periwinkle: #aebbe4;
+  --color-gray: #303841;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: league_spartan, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #000;
+}
+
+/* NAVIGATION BAR */
+
+.nav-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  background: #000;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 2px 0 #00000066;
+}
+
+.nav-bar__link {
+  color: var(--color-white);
+  text-decoration: none;
+  height: 100%;
+  padding: 0 1rem;
+}
+
+.nav-bar__link:hover {
+  color: var(--color-white-hover);
+}
+
+/* ABOUT SECTION */
+
+.about-section__header {
+  font-size: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-white);
+  padding-top: 7.5rem;
+  height: 100vh;
+}
+
+.about-section__title {
+  margin-bottom: 1rem;
+}
+
+.about-section__subtitle {
+  font-style: italic;
+  text-align: center;
+  color: var(--color-pink);
+  padding: 0 10vw;
+}
+
+.about-section__desc-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-pink);
+  height: 100vh;
+}
+
+.about-section__desc {
+  font-size: 2.5rem;
+  position: relative;
+  min-width: 64rem;
+  max-width: 100rem;
+  bottom: 5vh;
+  padding: 0 10vw;
+}
+
+.smaller-text {
+  font-size: 1.7rem;
+  color: var(--color-white);
+}
+
+.horizontal-bar {
+  position: relative;
+  top: 20vh;
+  background: #000;
+  height: 4vh;
+  width: 100%;
+}
+
+/* PROJECT SECTION */
+
+.project-section {
+  background: var(--color-blue);
+  min-height: 100vh;
+  text-align: center;
+  padding: 10rem 1rem;
+}
+
+.project-section__header {
+  padding: 0 0 1rem;
+  border-bottom: 1px solid #000;
+  max-width: 64rem;
+  margin: 0 auto 4rem;
+}
+
+.project-section__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(56rem, 1fr));
+  grid-gap: 4rem;
+  margin: 0 auto;
+  padding: 0 5rem;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.project-tile {
+  background: var(--color-gray);
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 2px 2px 2px #1f1f1f;
+}
+
+.project-tile:hover .code {
+  color: #0f0;
+}
+
+.project-tile__image {
+  object-fit: cover;
+  height: 80%;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.project-tile__name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  padding-bottom: 1rem;
+  color: var(--color-white);
+}
+
+.code {
+  color: var(--color-gray);
+  transition: color 0.3s ease-in-out;
+}
+
+.filler {
+  color: var(--color-gray);
+}
+
+/* CONTACT SECTION */
+
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-gray);
+  color: var(--color-white);
+  height: 95vh;
+  padding: 5.5rem 1rem;
+}
+
+.contact-section__header {
+  font-size: 4rem;
+  margin: 5rem;
+  text-align: center;
+  min-width: 64rem;
+}
+
+.contact-section__subtitle {
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--color-pink);
+}
+
+.contact-section__image {
+  position: relative;
+  top: 1rem;
+  left: 1rem;
+  height: 5rem;
+}
+
+.contact-section__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 6rem auto 0;
+}
+
+.contact-section__link {
+  text-decoration: none;
+  color: var(--color-white);
+  margin: 5rem;
+  text-shadow: 2px 2px 2px #1f1f1f;
+  transition: transform 0.3s ease-in-out;
+}
+
+.contact-section__link:hover {
+  transform: translateY(5px);
+}
+
+.contact-section__link .icon {
+  text-decoration: none currentColor solid;
+  color: var(--color-periwinkle);
+}
+
+/* FOOTER SECTION */
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding-right: 0.5em;
+  background: #ddd;
+}
+
+.footer__copyright {
+  text-align: right;
+  color: #444;
+  padding: 1rem;
+}

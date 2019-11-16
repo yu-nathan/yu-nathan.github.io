@@ -22,6 +22,8 @@
   --color-blue: #b0ddf5;
   --color-periwinkle: #aebbe4;
   --color-gray: #303841;
+  --color-black: #000;
+  --color-code-green: #0f0;
 }
 
 html {
@@ -34,7 +36,7 @@ body {
   font-size: 1.8rem;
   font-weight: 400;
   line-height: 1.4;
-  color: #000;
+  color: var(--color-black);
 }
 
 /* NAVIGATION BAR */
@@ -46,7 +48,7 @@ body {
   width: 100%;
   position: fixed;
   z-index: 10;
-  background: #000;
+  background: var(--color-black);
   padding: 2.5rem 3rem;
   box-shadow: 0 2px 0 #00000066;
 }
@@ -134,7 +136,7 @@ body {
 .horizontal-bar {
   position: relative;
   top: 25vh;
-  background: #000;
+  background: var(--color-black);
   height: 4vh;
   width: 100%;
 }
@@ -151,7 +153,7 @@ body {
 
 .project-section__header {
   padding: 0 0 1rem;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--color-black);
   width: 40%;
   margin: 0 auto 4rem;
 }
@@ -180,19 +182,29 @@ body {
 }
 
 .project-tile {
+  display: flex;
+  flex-direction: column;
   background: var(--color-gray);
   border-radius: 5px;
   text-decoration: none;
   box-shadow: 2px 2px 2px #1f1f1f;
+  border: 1px solid var(--color-black); 
+}
+
+.project-section__horizontal-bar {
+  background: var(--color-code-green);
+  top: auto;
+  height: 2px;
+  width: 100%;
 }
 
 .project-tile:hover .code {
-  color: #0f0;
+  color: var(--color-code-green);
 }
 
 .project-tile__image {
   object-fit: cover;
-  height: 80%;
+  height: calc(80% - 0.5px);
   width: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -202,7 +214,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20%;
+  height: calc(20% - 0.5px);
   padding-bottom: 1rem;
   color: var(--color-white);
 }

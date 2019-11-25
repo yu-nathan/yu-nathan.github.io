@@ -1,4 +1,4 @@
-/* CSS style sheet for Product Landing Page project */
+/* CSS style sheet for Personal Portfolio project */
 @font-face {
   font-family: 'league_spartan';
   src: url('.resources/fonts/leaguespartan-bold-webfont.woff2') format('woff2'),
@@ -188,7 +188,7 @@ body {
   border-radius: 5px;
   text-decoration: none;
   box-shadow: 2px 2px 2px #1f1f1f;
-  border: 1px solid var(--color-black); 
+  border: 1px solid var(--color-black);
 }
 
 .project-section__horizontal-bar {

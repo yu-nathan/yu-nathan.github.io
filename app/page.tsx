@@ -7,6 +7,7 @@ import {
   Camera,
   Code2,
   Dumbbell,
+  Mail,
   Music2,
   Plane,
   type LucideIcon,
@@ -498,7 +499,16 @@ export default function Home() {
                 my attention next.
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                asChild
+                variant="outline"
+                className="border-background/20 bg-background text-foreground hover:bg-background/90"
+              >
+                <a href="mailto:nyu1997@gmail.com">
+                  <Mail aria-hidden="true" className="size-4" /> Email me
+                </a>
+              </Button>
               {[
                 ...socialLinks,
                 {

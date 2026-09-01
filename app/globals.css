@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f1e8;
+  --foreground: #29261f;
+  --card: #fbf8f2;
+  --card-foreground: #29261f;
+  --muted: #ebe4d9;
+  --muted-foreground: #716a60;
+  --border: #d8d0c4;
+  --ring: #b85c38;
+  --accent: #b85c38;
+  --site-font-sans:
+    "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+  --site-font-serif: Iowan Old Style, Baskerville, "Times New Roman", serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-accent: var(--accent);
+  --font-sans: var(--site-font-sans);
+  --font-serif: var(--site-font-serif);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--site-font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(184, 92, 56, 0.22);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-title {
+  max-width: 54rem;
+  font-family: var(--site-font-serif);
+  font-size: clamp(2.75rem, 6vw, 5.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.hero-section {
+  background:
+    radial-gradient(
+      circle at 82% 34%,
+      rgba(205, 155, 102, 0.18),
+      transparent 28rem
+    ),
+    linear-gradient(145deg, #f8f4ec 0%, #f2eadf 100%);
+}
+
+.hero-orbit {
+  position: absolute;
+  border: 1px solid rgba(76, 66, 54, 0.13);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.hero-orbit-one {
+  width: 32rem;
+  height: 32rem;
+  top: 12%;
+  right: -11rem;
+}
+
+.hero-orbit-two {
+  width: 18rem;
+  height: 18rem;
+  top: 28%;
+  right: -4rem;
+}
+
+.project-visual {
+  display: flex;
+  min-height: 17rem;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1.35rem;
+  padding: 1.5rem;
+}
+
+.project-visual-elo {
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(184, 92, 56, 0.25),
+      transparent 30%
+    ),
+    linear-gradient(145deg, #e6d8c8, #cedbd4);
+}
+
+.project-visual-site {
+  background:
+    linear-gradient(
+      115deg,
+      transparent 48%,
+      rgba(184, 92, 56, 0.16) 48%,
+      rgba(184, 92, 56, 0.16) 52%,
+      transparent 52%
+    ),
+    #e8ded1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

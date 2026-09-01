@@ -1,7 +1,12 @@
-# Nathan's Website v2.0
-Contains all files for the website including HTML, CSS, and JS features.
+# Nathan Yu — Personal Website
 
-11/14/2019 Finished basic functionality and styling.
+A warm, minimal personal homepage built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui. The site is statically exported and deployed to GitHub Pages.
 
-**TODO:**
-- add some cool JS features
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Run `npm run build` to verify the production export.

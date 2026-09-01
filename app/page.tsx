@@ -203,8 +203,11 @@ export default function Home() {
           </p>
         </section>
 
-        <section id="life" className="scroll-mt-20 py-24 sm:py-32">
-          <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <section className="py-24 sm:py-32">
+          <div
+            id="life"
+            className="mx-auto max-w-7xl scroll-mt-24 px-5 sm:px-8"
+          >
             <div className="max-w-3xl">
               <p className="section-label">Away from the keyboard</p>
               <h2 className="section-title mt-5">
@@ -319,11 +322,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="projects"
-          className="border-border bg-card/55 scroll-mt-20 border-y py-24 sm:py-32"
-        >
-          <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <section className="border-border bg-card/55 border-y py-24 sm:py-32">
+          <div
+            id="projects"
+            className="mx-auto max-w-7xl scroll-mt-24 px-5 sm:px-8"
+          >
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <div className="max-w-3xl">
                 <p className="section-label">Selected projects</p>
@@ -413,8 +416,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="experience" className="scroll-mt-20 py-24 sm:py-32">
-          <div className="mx-auto grid max-w-7xl gap-16 px-5 sm:px-8 lg:grid-cols-[0.75fr_1.25fr]">
+        <section className="py-24 sm:py-32">
+          <div
+            id="experience"
+            className="mx-auto grid max-w-7xl scroll-mt-24 gap-16 px-5 sm:px-8 lg:grid-cols-[0.75fr_1.25fr]"
+          >
             <div className="lg:sticky lg:top-28 lg:self-start">
               <p className="section-label">What I build</p>
               <h2 className="mt-5 font-serif text-4xl leading-tight tracking-tight text-balance sm:text-5xl">

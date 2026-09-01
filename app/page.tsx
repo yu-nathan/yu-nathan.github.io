@@ -484,7 +484,10 @@ export default function Home() {
       </main>
 
       <footer className="border-border bg-foreground text-background border-t">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+        <div
+          id="contact"
+          className="mx-auto max-w-7xl scroll-mt-24 px-5 py-16 sm:px-8 sm:py-20"
+        >
           <div className="flex flex-col justify-between gap-10 sm:flex-row sm:items-end">
             <div>
               <p className="font-serif text-5xl tracking-tight sm:text-6xl">

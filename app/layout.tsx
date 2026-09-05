@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yu-nathan.github.io"),
+  metadataBase: new URL("https://nathan-yu.me"),
   title: "Nathan Yu",
   description:
     "Nathan Yu is a San Francisco-based software engineer sharing his work, projects, travels, photography, and interests.",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Nathan Yu",
     description:
       "Building useful software—and making time for new places, good photos, and the occasional great drive.",
-    url: "https://yu-nathan.github.io",
+    url: "https://nathan-yu.me",
     siteName: "Nathan Yu",
     type: "website",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Nathan Yu" }],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   alternates: {
-    canonical: "https://yu-nathan.github.io",
+    canonical: "https://nathan-yu.me",
   },
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],

@@ -332,7 +332,7 @@ export default function Home() {
               <div className="max-w-3xl">
                 <p className="section-label">Selected projects</p>
                 <h2 className="section-title mt-5">
-                  Things I’ve enjoyed building.
+                  Things I’ve enjoyed creating.
                 </h2>
               </div>
               <Button asChild variant="outline">

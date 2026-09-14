@@ -36,7 +36,7 @@ type SocialLink = {
   label: string;
   handle: string;
   href: string;
-  icon: typeof AtSign;
+  icon: LucideIcon;
 };
 
 type Project = {
@@ -45,6 +45,7 @@ type Project = {
   href: string;
   tags: string[];
   eyebrow: string;
+  visual: "elo" | "site";
 };
 
 type Experience = {
@@ -81,20 +82,32 @@ const interests: Interest[] = [
   },
 ];
 
-const socialLinks: SocialLink[] = [
-  {
+const socialLinks = {
+  instagram: {
     label: "Instagram",
     handle: "@nathanyuuu",
     href: "https://www.instagram.com/nathanyuuu/",
     icon: AtSign,
   },
-  {
+  tiktok: {
     label: "TikTok",
     handle: "@nathan_yuuu",
     href: "https://www.tiktok.com/@nathan_yuuu",
     icon: Music2,
   },
-];
+  linkedin: {
+    label: "LinkedIn",
+    handle: "Nathan Yu",
+    href: "https://www.linkedin.com/in/yu-nathan/",
+    icon: BriefcaseBusiness,
+  },
+  github: {
+    label: "GitHub",
+    handle: "yu-nathan",
+    href: "https://github.com/yu-nathan",
+    icon: Code2,
+  },
+} satisfies Record<string, SocialLink>;
 
 const instagramPosts: InstagramPost[] = [
   {
@@ -118,6 +131,7 @@ const projects: Project[] = [
   {
     title: "Tichu Elo System",
     eyebrow: "Full-stack web app",
+    visual: "elo",
     description:
       "A full-stack web app for running a Tichu group, with live Elo standings, match history, balanced-team generation, and Discord-ready sharing. An authenticated admin console makes it easy to manage players and games while ratings recalculate automatically.",
     href: "https://github.com/yu-nathan/tichu-elo-system",
@@ -126,6 +140,7 @@ const projects: Project[] = [
   {
     title: "Personal Portfolio",
     eyebrow: "You’re here",
+    visual: "site",
     description:
       "A modern, responsive home for my work, interests, and experience, rebuilt with Next.js, TypeScript, and accessible component primitives.",
     href: "https://github.com/yu-nathan/yu-nathan.github.io",
@@ -161,7 +176,13 @@ const ExternalIcon = () => (
   <ArrowUpRight aria-hidden="true" className="size-4" />
 );
 
-export default function Home() {
+const leaderboardPreview = [
+  { initials: "NY", rating: 1128 },
+  { initials: "SC", rating: 1084 },
+  { initials: "CY", rating: 1036 },
+];
+
+const Home = () => {
   return (
     <>
       <SiteHeader />
@@ -245,7 +266,8 @@ export default function Home() {
                   <div>
                     <div className="text-background/65 mb-5 flex items-center gap-2 text-sm">
                       <AtSign aria-hidden="true" className="size-4" />
-                      Instagram · @nathanyuuu
+                      {socialLinks.instagram.label} ·{" "}
+                      {socialLinks.instagram.handle}
                     </div>
                     <CardTitle className="max-w-lg text-3xl leading-tight text-balance sm:text-4xl">
                       Cars, trips, and favorite moments from wherever life takes
@@ -253,7 +275,7 @@ export default function Home() {
                     </CardTitle>
                   </div>
                   <a
-                    href={socialLinks[0].href}
+                    href={socialLinks.instagram.href}
                     target="_blank"
                     rel="noreferrer"
                     className="border-background/20 hover:bg-background hover:text-foreground focus-visible:ring-background rounded-full border p-3 transition-colors focus-visible:ring-2 focus-visible:outline-none"
@@ -297,7 +319,7 @@ export default function Home() {
                 <CardHeader className="relative p-7 sm:p-9">
                   <div className="mb-5 flex items-center gap-2 text-sm text-white/75">
                     <Music2 aria-hidden="true" className="size-4" />
-                    TikTok · @nathan_yuuu
+                    {socialLinks.tiktok.label} · {socialLinks.tiktok.handle}
                   </div>
                 </CardHeader>
                 <CardFooter className="absolute inset-x-0 bottom-0 flex-col items-start gap-5 p-7 sm:p-9">
@@ -337,7 +359,7 @@ export default function Home() {
               </div>
               <Button asChild variant="outline">
                 <a
-                  href="https://github.com/yu-nathan"
+                  href={socialLinks.github.href}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -348,14 +370,14 @@ export default function Home() {
             </div>
 
             <div className="mt-14 grid gap-6 lg:grid-cols-2">
-              {projects.map((project, index) => (
+              {projects.map((project) => (
                 <Card
                   key={project.title}
                   className="group flex min-h-[28rem] flex-col p-2 transition-transform duration-300 hover:-translate-y-1"
                 >
                   <div
                     className={
-                      index === 0
+                      project.visual === "elo"
                         ? "project-visual project-visual-elo"
                         : "project-visual project-visual-site"
                     }
@@ -363,26 +385,28 @@ export default function Home() {
                     <span className="text-foreground/50 font-mono text-xs">
                       {project.eyebrow}
                     </span>
-                    {index === 0 ? (
+                    {project.visual === "elo" ? (
                       <div className="border-foreground/10 bg-background/65 mt-auto w-full max-w-sm rounded-2xl border p-4 shadow-sm backdrop-blur-sm">
                         <div className="text-muted-foreground mb-3 flex items-center justify-between text-xs">
                           <span>Leaderboard</span>
                           <span>Rating</span>
                         </div>
-                        {["NY", "SC", "CY"].map((initials, rank) => (
-                          <div
-                            key={initials}
-                            className="border-border flex items-center border-t py-2.5 text-sm"
-                          >
-                            <span className="text-muted-foreground mr-3">
-                              0{rank + 1}
-                            </span>
-                            <span className="font-medium">{initials}</span>
-                            <span className="ml-auto font-mono">
-                              {[1128, 1084, 1036][rank]}
-                            </span>
-                          </div>
-                        ))}
+                        {leaderboardPreview.map(
+                          ({ initials, rating }, rank) => (
+                            <div
+                              key={initials}
+                              className="border-border flex items-center border-t py-2.5 text-sm"
+                            >
+                              <span className="text-muted-foreground mr-3">
+                                0{rank + 1}
+                              </span>
+                              <span className="font-medium">{initials}</span>
+                              <span className="ml-auto font-mono">
+                                {rating}
+                              </span>
+                            </div>
+                          ),
+                        )}
                       </div>
                     ) : (
                       <div className="text-foreground/80 mt-auto font-serif text-6xl leading-none tracking-tight sm:text-7xl">
@@ -434,7 +458,7 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild variant="outline">
                   <a
-                    href="https://www.linkedin.com/in/yu-nathan/"
+                    href={socialLinks.linkedin.href}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -444,7 +468,7 @@ export default function Home() {
                 </Button>
                 <Button asChild variant="outline">
                   <a
-                    href="https://github.com/yu-nathan"
+                    href={socialLinks.github.href}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -509,21 +533,7 @@ export default function Home() {
                   <Mail aria-hidden="true" className="size-4" /> Email me
                 </a>
               </Button>
-              {[
-                ...socialLinks,
-                {
-                  label: "LinkedIn",
-                  handle: "Nathan Yu",
-                  href: "https://www.linkedin.com/in/yu-nathan/",
-                  icon: BriefcaseBusiness,
-                },
-                {
-                  label: "GitHub",
-                  handle: "yu-nathan",
-                  href: "https://github.com/yu-nathan",
-                  icon: Code2,
-                },
-              ].map((social) => {
+              {Object.values(socialLinks).map((social) => {
                 const Icon = social.icon;
                 return (
                   <a
@@ -549,4 +559,6 @@ export default function Home() {
       </footer>
     </>
   );
-}
+};
+
+export default Home;

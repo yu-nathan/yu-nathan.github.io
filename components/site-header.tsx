@@ -1,7 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
@@ -14,12 +14,23 @@ const navItems = [
 
 export const SiteHeader = () => {
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <header className="border-border/70 bg-background/85 fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl">
+    <header
+      className="border-border/70 bg-background/85 fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl"
+      onKeyDown={(event) => {
+        if (open && event.key === "Escape") {
+          event.preventDefault();
+          setOpen(false);
+          menuButtonRef.current?.focus();
+        }
+      }}
+    >
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-8">
         <a
           href="#top"
+          onClick={() => setOpen(false)}
           className="focus-visible:ring-ring font-serif text-xl font-semibold tracking-tight focus-visible:rounded focus-visible:ring-2 focus-visible:outline-none"
         >
           Nathan Yu<span className="text-accent">.</span>
@@ -37,6 +48,7 @@ export const SiteHeader = () => {
         </nav>
 
         <Button
+          ref={menuButtonRef}
           type="button"
           variant="ghost"
           size="icon"
@@ -50,26 +62,25 @@ export const SiteHeader = () => {
         </Button>
       </div>
 
-      {open && (
-        <nav
-          id="mobile-navigation"
-          aria-label="Mobile navigation"
-          className="border-border bg-background border-t px-5 py-4 md:hidden"
-        >
-          <div className="mx-auto flex max-w-7xl flex-col">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="hover:bg-muted focus-visible:ring-ring rounded-xl px-4 py-3 text-base font-medium focus-visible:ring-2 focus-visible:outline-none"
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-        </nav>
-      )}
+      <nav
+        id="mobile-navigation"
+        aria-label="Mobile navigation"
+        hidden={!open}
+        className="border-border bg-background border-t px-5 py-4 md:hidden"
+      >
+        <div className="mx-auto flex max-w-7xl flex-col">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="hover:bg-muted focus-visible:ring-ring rounded-xl px-4 py-3 text-base font-medium focus-visible:ring-2 focus-visible:outline-none"
+              onClick={() => setOpen(false)}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </nav>
     </header>
   );
 };

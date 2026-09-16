@@ -8,6 +8,7 @@
   --muted: #ebe4d9;
   --muted-foreground: #716a60;
   --border: #d8d0c4;
+  --project-preview-border: #b9ae9f;
   --ring: #b85c38;
   --accent: #b85c38;
   --site-font-sans:
@@ -99,22 +100,28 @@ body {
 }
 
 .project-visual {
+  @apply min-h-80;
   display: flex;
-  min-height: 17rem;
   flex-direction: column;
   overflow: hidden;
+  border: 1px solid var(--project-preview-border);
   border-radius: 1.35rem;
   padding: 1.5rem;
 }
 
 .project-visual-elo {
-  background:
-    radial-gradient(
-      circle at 85% 20%,
-      rgba(184, 92, 56, 0.25),
-      transparent 30%
-    ),
-    linear-gradient(145deg, #e6d8c8, #cedbd4);
+  --background: oklch(0.145 0.025 250);
+  --foreground: oklch(0.95 0.015 210);
+  --card: oklch(0.19 0.026 247);
+  --muted-foreground: oklch(0.68 0.025 225);
+  --border: rgb(255 255 255 / 8%);
+  --tichu-rank: var(--color-amber-300);
+  --tichu-rating: var(--color-emerald-200);
+  --tichu-badge-text: var(--color-amber-200);
+  --tichu-badge-border: color-mix(in oklab, var(--tichu-rank) 30%, transparent);
+  background: var(--background);
+  color: var(--foreground);
+  gap: 0.75rem;
 }
 
 .project-visual-site {
@@ -127,6 +134,39 @@ body {
       transparent 52%
     ),
     #e8ded1;
+}
+
+/* Keep this thumbnail palette aligned with the Job Tracker app. */
+.project-visual-tracker {
+  --background: #faf7f2;
+  --foreground: #332a24;
+  --card: #fffdf9;
+  --muted: #f2ece3;
+  --muted-foreground: #7b6b5e;
+  --border: #e4d9cb;
+  --tracker-secondary: #f0e7dc;
+  --tracker-secondary-foreground: #674c39;
+  --tracker-interviewing-background: #efe4fa;
+  --tracker-interviewing-foreground: #673494;
+  --tracker-interviewing-border: #d5b9ed;
+  background: var(--background);
+  color: var(--foreground);
+  gap: 0.75rem;
+}
+
+.tracker-preview {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tracker-company-monogram {
+  background: var(--tracker-secondary);
+  color: var(--tracker-secondary-foreground);
+}
+
+.tracker-status[data-status="interviewing"] {
+  background: var(--tracker-interviewing-background);
+  color: var(--tracker-interviewing-foreground);
+  border-color: var(--tracker-interviewing-border);
 }
 
 @media (prefers-reduced-motion: reduce) {

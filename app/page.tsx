@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
+import { JobTrackerPreview } from "@/components/job-tracker-preview";
+import { TichuPreview } from "@/components/tichu-preview";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -42,10 +44,11 @@ type SocialLink = {
 type Project = {
   title: string;
   description: string;
-  href: string;
+  websiteHref: string;
+  githubHref?: string;
   tags: string[];
   eyebrow: string;
-  visual: "elo" | "site";
+  visual: "elo" | "site" | "tracker";
 };
 
 type Experience = {
@@ -134,8 +137,17 @@ const projects: Project[] = [
     visual: "elo",
     description:
       "A full-stack web app for running a Tichu group, with live Elo standings, match history, balanced-team generation, and Discord-ready sharing. An authenticated admin console makes it easy to manage players and games while ratings recalculate automatically.",
-    href: "https://github.com/yu-nathan/tichu-elo-system",
+    websiteHref: "https://tichu-elo.nyu1997.chatgpt.site",
+    githubHref: "https://github.com/yu-nathan/tichu-elo-system",
     tags: ["TypeScript", "React", "Drizzle"],
+  },
+  {
+    title: "Job Tracker",
+    eyebrow: "Full-stack web app",
+    visual: "tracker",
+    description: "Private job applications, grouped by company.",
+    websiteHref: "https://job-tracker.nyu1997.chatgpt.site",
+    tags: ["TypeScript", "React", "Cloudflare D1"],
   },
   {
     title: "Personal Portfolio",
@@ -143,7 +155,8 @@ const projects: Project[] = [
     visual: "site",
     description:
       "A modern, responsive home for my work, interests, and experience, rebuilt with Next.js, TypeScript, and accessible component primitives.",
-    href: "https://github.com/yu-nathan/yu-nathan.github.io",
+    websiteHref: "https://nathan-yu.me",
+    githubHref: "https://github.com/yu-nathan/yu-nathan.github.io",
     tags: ["Next.js", "TypeScript", "shadcn/ui"],
   },
 ];
@@ -175,12 +188,6 @@ const experiences: Experience[] = [
 const ExternalIcon = () => (
   <ArrowUpRight aria-hidden="true" className="size-4" />
 );
-
-const leaderboardPreview = [
-  { initials: "NY", rating: 1128 },
-  { initials: "SC", rating: 1084 },
-  { initials: "CY", rating: 1036 },
-];
 
 const Home = () => {
   return (
@@ -369,7 +376,7 @@ const Home = () => {
               </Button>
             </div>
 
-            <div className="mt-14 grid gap-6 lg:grid-cols-2">
+            <div className="mt-14 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
               {projects.map((project) => (
                 <Card
                   key={project.title}
@@ -379,35 +386,18 @@ const Home = () => {
                     className={
                       project.visual === "elo"
                         ? "project-visual project-visual-elo"
-                        : "project-visual project-visual-site"
+                        : project.visual === "tracker"
+                          ? "project-visual project-visual-tracker"
+                          : "project-visual project-visual-site"
                     }
                   >
                     <span className="text-foreground/50 font-mono text-xs">
                       {project.eyebrow}
                     </span>
                     {project.visual === "elo" ? (
-                      <div className="border-foreground/10 bg-background/65 mt-auto w-full max-w-sm rounded-2xl border p-4 shadow-sm backdrop-blur-sm">
-                        <div className="text-muted-foreground mb-3 flex items-center justify-between text-xs">
-                          <span>Leaderboard</span>
-                          <span>Rating</span>
-                        </div>
-                        {leaderboardPreview.map(
-                          ({ initials, rating }, rank) => (
-                            <div
-                              key={initials}
-                              className="border-border flex items-center border-t py-2.5 text-sm"
-                            >
-                              <span className="text-muted-foreground mr-3">
-                                0{rank + 1}
-                              </span>
-                              <span className="font-medium">{initials}</span>
-                              <span className="ml-auto font-mono">
-                                {rating}
-                              </span>
-                            </div>
-                          ),
-                        )}
-                      </div>
+                      <TichuPreview />
+                    ) : project.visual === "tracker" ? (
+                      <JobTrackerPreview />
                     ) : (
                       <div className="text-foreground/80 mt-auto font-serif text-6xl leading-none tracking-tight sm:text-7xl">
                         NY<span className="text-accent">.</span>
@@ -426,14 +416,25 @@ const Home = () => {
                         <Badge key={tag}>{tag}</Badge>
                       ))}
                     </div>
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="focus-visible:ring-ring inline-flex items-center gap-1.5 text-sm font-medium underline-offset-4 hover:underline focus-visible:rounded focus-visible:ring-2 focus-visible:outline-none"
-                    >
-                      View project <ExternalIcon />
-                    </a>
+                    <div className="flex flex-wrap gap-4">
+                      {[
+                        { href: project.websiteHref, label: "Visit website" },
+                        { href: project.githubHref, label: "View code" },
+                      ].map(({ href, label }) =>
+                        href ? (
+                          <a
+                            key={label}
+                            href={href}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`${project.title}: ${label}`}
+                            className="focus-visible:ring-ring inline-flex items-center gap-1.5 text-sm font-medium underline-offset-4 hover:underline focus-visible:rounded focus-visible:ring-2 focus-visible:outline-none"
+                          >
+                            {label} <ExternalIcon />
+                          </a>
+                        ) : null,
+                      )}
+                    </div>
                   </CardFooter>
                 </Card>
               ))}
